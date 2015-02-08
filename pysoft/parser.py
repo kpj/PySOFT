@@ -1,9 +1,16 @@
+import gzip
+
+
 class SOFTFile(object):
 	def __init__(self, fname):
 		self.header = {}
 
-		with open(fname, 'r') as fd:
-			self.content = fd.read()
+		if fname.endswith('.gz'):
+			with gzip.open(fname, 'rb') as fd:
+				self.content = str(fd.read(), encoding='utf8')
+		else:
+			with open(fname, 'r') as fd:
+				self.content = fd.read()
 
 		self.parse()
 
