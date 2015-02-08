@@ -22,3 +22,26 @@ Using pip
 ::
 
   $ pip install pysoft
+
+
+Usage
+-----
+Exemplary usage as python module:
+::
+
+  import pysoft
+
+
+  soft = pysoft.SOFTFile('GDSxxxx.soft')
+  print('Data retrieved from %s' % soft.header['database']['database_name'])
+
+
+Bug Reports
+-----------
+Please submit any bugs you find to https://github.com/kpj/PySOFT/issues.
+
+
+Links
+-----
+- Github: https://github.com/kpj/PySOFT
+- PyPi Homepage: https://pypi.python.org/pypi/pysoft
