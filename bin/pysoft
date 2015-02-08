@@ -13,6 +13,8 @@ import pysoft
 def main():
     soft = pysoft.SOFTFile(sys.argv[1])
     pprint(soft.header)
+    print('Columns:', soft.columns)
+    print('#%d data rows' % len(soft.data))
 
 
 if __name__ == '__main__':
