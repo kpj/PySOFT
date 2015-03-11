@@ -7,7 +7,7 @@ def readme():
 
 setup(
 	name='PySOFT',
-	version='0.0.4',
+	version='0.0.6',
 	description='SOFT (Simple Omnibus Format in Text) file parser',
 	long_description=readme(),
 	url='https://github.com/kpj/PySOFT',

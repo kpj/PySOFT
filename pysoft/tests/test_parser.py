@@ -30,6 +30,17 @@ class TestSOFTFileHeader(TestCase):
         self.assertEqual(self.soft.data[0][1], self.soft.data[0]['IDENTIFIER'])
         self.assertEqual(self.soft.data[0][-1], self.soft.data[0]['GO:Component ID'])
 
+    def test_assingment(self):
+        self.assertEqual(self.soft.data[0][0], 'aas_b2836_at')
+
+        self.soft.data[0][0] = 'foo'
+        self.assertEqual(self.soft.data[0][0], 'foo')
+        self.assertEqual(self.soft.data[0]['ID_REF'], 'foo')
+
+        self.soft.data[0]['ID_REF'] = 'bar'
+        self.assertEqual(self.soft.data[0][0], 'bar')
+        self.assertEqual(self.soft.data[0]['ID_REF'], 'bar')
+
     def test_exceptions(self):
         with self.assertRaises(TypeError):
             self.soft.data[0][3.141]

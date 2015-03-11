@@ -1,3 +1,4 @@
+import collections
 import gzip
 
 
@@ -14,22 +15,30 @@ class Row(object):
 	"""
 
 	def __init__(self, col_names, row):
-		self.dict = {col: row[i] for i, col in enumerate(col_names)}
-		self.list = row
+		self.dict = collections.OrderedDict([(col, row[i]) for i, col in enumerate(col_names)])
+		self.keys = list(self.dict.keys())
 
 	def __getitem__(self, key):
-		if type(key) == type(42):
-			return self.list[key]
-		elif type(key) == type('foo'):
+		if isinstance(key, int):
+			return self.dict[self.keys[key]]
+		elif isinstance(key, str):
 			return self.dict[key]
 		else:
 			raise TypeError('Only int and string allowed for indexing')
 
+	def __setitem__(self, key, item):
+		if isinstance(key, int):
+			self.dict[self.keys[key]] = item
+		elif isinstance(key, str):
+			self.dict[key] = item
+		else:
+			raise TypeError('Only int and string allowed for indexing')
+
 	def __iter__(self):
-		return iter(self.list)
+		return iter(self.dict.values())
 
 	def __len__(self):
-		return len(self.list)
+		return len(self.dict)
 
 class SOFTFile(object):
 	def __init__(self, fname, skip_data=False):
