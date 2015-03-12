@@ -26,6 +26,14 @@ class Row(object):
 		except ValueError:
 			return obj
 
+	def __copy__(self):
+		new_row = type(self)()
+
+		new_row.dict = self.dict.copy()
+		new_row.keys = self.keys.copy()
+
+		return new_row
+
 	def __getitem__(self, key):
 		if isinstance(key, int):
 			return self.dict[self.keys[key]]

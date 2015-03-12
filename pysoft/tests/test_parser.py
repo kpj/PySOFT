@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-import os, os.path
+import copy, os, os.path
 
 from pysoft import SOFTFile
 from pysoft.parser import Row
@@ -12,6 +12,15 @@ class TestRow(TestCase):
 
         self.assertEqual(row._try_float('3.141'), 3.141)
         self.assertEqual(row._try_float('foo'), 'foo')
+
+    def test_copy_function(self):
+        row = Row(['col1'], [42])
+        row2 = copy.copy(row)
+
+        row['col1'] = 23
+
+        self.assertEqual(row2['col1'], 42)
+
 
 class TestSOFTFileHeader(TestCase):
     def setUp(self):
