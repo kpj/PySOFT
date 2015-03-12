@@ -3,7 +3,15 @@ from unittest import TestCase
 import os, os.path
 
 from pysoft import SOFTFile
+from pysoft.parser import Row
 
+
+class TestRow(TestCase):
+    def test_helper_functions(self):
+        row = Row()
+
+        self.assertEqual(row._try_float('3.141'), 3.141)
+        self.assertEqual(row._try_float('foo'), 'foo')
 
 class TestSOFTFileHeader(TestCase):
     def setUp(self):
@@ -32,6 +40,8 @@ class TestSOFTFileHeader(TestCase):
 
         self.assertEqual(self.soft.data[0][-1], self.soft.data[0]['GO:Component ID'])
         self.assertEqual(self.soft.data[0][:2], ['aas_b2836_at', 'aas'])
+
+        self.assertEqual(self.soft.data[0][2], 725.9)
 
     def test_assingment(self):
         self.assertEqual(self.soft.data[0][0], 'aas_b2836_at')

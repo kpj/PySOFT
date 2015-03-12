@@ -14,9 +14,17 @@ class Row(object):
 	""" Allow data access via column name and column index
 	"""
 
-	def __init__(self, col_names, row):
-		self.dict = collections.OrderedDict([(col, row[i]) for i, col in enumerate(col_names)])
+	def __init__(self, col_names=[], row=[]):
+		self.dict = collections.OrderedDict([(col, self._try_float(row[i])) for i, col in enumerate(col_names)])
 		self.keys = list(self.dict.keys())
+
+	def _try_float(self, obj):
+		""" Try to convert object to float, return original object if not possible
+		"""
+		try:
+			return float(obj)
+		except ValueError:
+			return obj
 
 	def __getitem__(self, key):
 		if isinstance(key, int):
