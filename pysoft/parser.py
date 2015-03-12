@@ -23,16 +23,21 @@ class Row(object):
 			return self.dict[self.keys[key]]
 		elif isinstance(key, str):
 			return self.dict[key]
+		elif isinstance(key, slice):
+			return [self.dict[k] for k in self.keys[key]]
 		else:
-			raise TypeError('Only int and string allowed for indexing')
+			raise TypeError('Only int, string and slice allowed for indexing')
 
 	def __setitem__(self, key, item):
 		if isinstance(key, int):
 			self.dict[self.keys[key]] = item
 		elif isinstance(key, str):
 			self.dict[key] = item
+		elif isinstance(key, slice):
+			for k, v in zip(self.keys[key], item):
+				self.dict[k] = v
 		else:
-			raise TypeError('Only int and string allowed for indexing')
+			raise TypeError('Only int, string and slice allowed for indexing')
 
 	def __iter__(self):
 		return iter(self.dict.values())

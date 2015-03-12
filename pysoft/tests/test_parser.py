@@ -23,12 +23,15 @@ class TestSOFTFileHeader(TestCase):
 
         self.assertEqual(len(self.soft.columns), 37)
         self.assertEqual(self.soft.columns[0].name, 'ID_REF')
+        self.assertEqual(self.soft.columns[0].name, str(self.soft.columns[0]))
         self.assertEqual(self.soft.columns[0].description, 'Platform reference identifier')
 
         self.assertEqual(len(self.soft.data), 7312)
         self.assertEqual(self.soft.data[0][0], self.soft.data[0]['ID_REF'])
         self.assertEqual(self.soft.data[0][1], self.soft.data[0]['IDENTIFIER'])
+
         self.assertEqual(self.soft.data[0][-1], self.soft.data[0]['GO:Component ID'])
+        self.assertEqual(self.soft.data[0][:2], ['aas_b2836_at', 'aas'])
 
     def test_assingment(self):
         self.assertEqual(self.soft.data[0][0], 'aas_b2836_at')
@@ -40,6 +43,9 @@ class TestSOFTFileHeader(TestCase):
         self.soft.data[0]['ID_REF'] = 'bar'
         self.assertEqual(self.soft.data[0][0], 'bar')
         self.assertEqual(self.soft.data[0]['ID_REF'], 'bar')
+
+        self.soft.data[0][:2] = ['ha', 'hu']
+        self.assertEqual(self.soft.data[0][:2], ['ha', 'hu'])
 
     def test_exceptions(self):
         with self.assertRaises(TypeError):
