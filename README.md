@@ -1,8 +1,8 @@
 # PySOFT
 
 [![Build Status](https://travis-ci.org/kpj/PySOFT.png)](https://travis-ci.org/kpj/PySOFT)
-[![Latest Version](https://pypip.in/version/pysoft/badge.svg)](https://pypi.python.org/pypi/pysoft/)
-[![Downloads](https://pypip.in/download/PySOFT/badge.svg)](https://pypi.python.org/pypi/PySOFT/)
+[![Latest Version](https://img.shields.io/pypi/v/pysoft.svg)](https://pypi.python.org/pypi/pysoft/)
+[![Downloads](https://img.shields.io/pypi/dm/PySOFT.svg)](https://pypi.python.org/pypi/PySOFT/)
 
 
 Parser for the SOFT (Simple Omnibus Format in Text) file format.
